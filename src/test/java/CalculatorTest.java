@@ -4,28 +4,37 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CalculatorTest {
 
+    private final Calculator calc = new Calculator();
+
     @Test
     void add() {
-        //TODO inser your realisation in test-method add
+        assertEquals(calc.add(-3, 4), 1);
     }
 
     @Test
     void dif() {
-        //TODO inser your realisation in test-method dif
+        assertEquals(calc.dif(7, 8), -1);
     }
 
     @Test
     void div() {
-        //TODO inser your realisation in test-method div
+        assertEquals(calc.div(8, 3), 2);
+    }
+
+    @Test
+    void divException() { // div by zero test
+        assertThrows(ArithmeticException.class, () -> calc.div(9, 0));
     }
 
     @Test
     void times() {
-        //TODO inser your realisation in test-method times
+        assertEquals(calc.times(2, -6), -12);
     }
 
     @Test
     void solver() {
-        //TODO inser your realisation in test-method solver
+        int[] result = calc.solver();
+        assertEquals(result[0], 3);
+        assertEquals(result[1], -2);
     }
 }
