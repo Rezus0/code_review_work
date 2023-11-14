@@ -1,39 +1,50 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class CalculatorTest {
+  
+    private static Calculator calculator;
 
-    private final Calculator calc = new Calculator();
+    @BeforeAll
+    public static void initAll() {
+        calculator = new Calculator();
+    }
 
     @Test
     void add() {
-        assertEquals(calc.add(-3, 4), 1);
+        assertEquals(4, calculator.add(2, 2));
+        assertEquals(calculator.add(-3, 4), 1);
     }
 
     @Test
     void dif() {
-        assertEquals(calc.dif(7, 8), -1);
+        assertEquals(10, calculator.dif(15, 5));
+        assertEquals(calculator.dif(7, 8), -1);
     }
 
     @Test
     void div() {
-        assertEquals(calc.div(8, 3), 2);
-    }
-
-    @Test
-    void divException() { // div by zero test
-        assertThrows(ArithmeticException.class, () -> calc.div(9, 0));
+        assertThrows(ArithmeticException.class, () -> calculator.div(10, 0)); // div by zero test
+        assertEquals(calculator.div(8, 3), 2);
     }
 
     @Test
     void times() {
-        assertEquals(calc.times(2, -6), -12);
+        assertEquals(12, calculator.times(4, 3));
+        assertEquals(calculator.times(2, -6), -12);
     }
 
     @Test
-    void solver() {
-        int[] result = calc.solver();
+    void karpushinaoSolver() {
+        assertArrayEquals(new int[]{2, 0}, calculator.karpushinaoSolver(2, -5, 2));
+        assertArrayEquals(new int[]{0}, calculator.karpushinaoSolver(-4, 0, 0));
+        assertThrows(ArithmeticException.class, () -> calculator.karpushinaoSolver(0, 0, 0));
+    }
+  
+    @Test
+    void romamentevrrSolver() {
+        int[] result = calculator.romamentevrrSolver();
         assertEquals(result[0], 3);
         assertEquals(result[1], -2);
     }
