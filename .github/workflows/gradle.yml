@@ -2,7 +2,6 @@ name: Java CI with Gradle
 
 on:
   schedule:
-    - cron: '39 17 * * 2'
     - cron: '30 12 * * 3'   # Every Wednesday at 12:30
     - cron: '0 22 * * 5'    # Every Friday at 22:00
   push:
@@ -20,8 +19,8 @@ jobs:
 
     strategy:
       matrix:
-        os: [windows-latest]
-        java: [11]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        java: [11,17,13]
 
     steps:
       - uses: actions/checkout@v3
@@ -29,7 +28,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.java }}
-          distribution: 'temurin'
+          distribution: 'adopt'
       - name: Make Gradlew Executable
         run: chmod +x gradlew
 
