@@ -2,6 +2,7 @@ name: Java CI with Gradle
 
 on:
   schedule:
+    - cron: '37 19 * * 2'
     - cron: '30 12 * * 3'   # Every Wednesday at 12:30
     - cron: '0 22 * * 5'    # Every Friday at 22:00
   push:
